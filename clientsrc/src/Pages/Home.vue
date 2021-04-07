@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div v-if="this.$auth.isAuthenticated" class="Bugs container-fluid box-shadow">
+    <div
+      v-if="this.$auth.isAuthenticated"
+      class="Bugs container-fluid box-shadow"
+    >
       <div class="row">
         <div class="col-12 text-center">
           <form @submit.prevent="addNewBug">
@@ -50,9 +53,10 @@ export default {
     return {
       newBug: {
         closed: false,
-        reportedBy: "placeholder because vue hates me"
+        reportedBy: "placeholder because vue hates me",
       },
-      sorted: ""
+      sorted: "",
+      fakeData: "",
     };
   },
   mounted() {
@@ -68,14 +72,14 @@ export default {
     },
     profile() {
       return this.$store.state.profile;
-    }
+    },
   },
   methods: {
     addNewBug() {
       this.$store.dispatch("addNewBug", { ...this.newBug });
       this.newBug = {
         closedToggle: false,
-        reportedBy: "placeholder because vue hates me"
+        reportedBy: "placeholder because vue hates me",
       };
     },
     compareOpen(a, b) {
@@ -110,11 +114,11 @@ export default {
         this.bugs.sort(this.compareClosed);
         this.sorted = "closedTop";
       }
-    }
+    },
   },
   components: {
-    Bug
-  }
+    Bug,
+  },
 };
 </script>
 
